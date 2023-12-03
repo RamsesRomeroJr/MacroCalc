@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 class Calculator:
     def __init__(self):
@@ -59,15 +60,20 @@ class Calculator:
         calculate_button.grid(row=5, column=0, padx=10, pady=5)
 
     def calculate(self):
-        print("Here's your meal's macros")
-        print("calories = " , self.total_macros[0])
-        print("protein = " , self.total_macros[1])
-        print("carbs = " , self.total_macros[2])
-        print("fats = " , self.total_macros[3])
+        results = tk.Tk()
+        results.geometry("350x350")
+        results.title("results")
+        calories_info = ttk.Label(results, text=f'Calories = {self.total_macros[0]}')
+        calories_info.grid(row=0, column=0, padx=10, pady=5)
 
+        protein_info = ttk.Label(results, text=f'protein = {self.total_macros[1]}')
+        protein_info.grid(row=1, column=0, padx=10, pady=5)
 
+        carbs_info = ttk.Label(results, text=f'carbs = {self.total_macros[2]}')
+        carbs_info.grid(row=2, column=0, padx=7, pady=5)
 
-
+        fats_info = ttk.Label(results, text=f'fats = {self.total_macros[3]}')
+        fats_info.grid(row=3, column=0, padx=5, pady=5)
 
 
 
