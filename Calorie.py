@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+import requests
 
 class Calculator:
     def __init__(self):
@@ -35,6 +36,12 @@ class Calculator:
 
         self.addFood_button = ttk.Button(self.window, text="Add Food", command=self.on_add_food)
         self.addFood_button.grid(row=6, column=0, padx=10, pady=5)
+
+        self.askAdvice_button = ttk.Button(self.window, text="Advice? Ask AI", command=self.ask_AI)
+        self.askAdvice_button.grid(row=9, column=0, padx=10, pady=5)
+        self.ask_entry = tk.Text(self.window, height=10, width=30)
+        self.ask_entry.grid(row=9, column=1, padx=10, pady=5)
+
         self.window.geometry("350x350")
         self.window.title("Calorie Calculator")
         self.window.mainloop()
@@ -61,7 +68,10 @@ class Calculator:
         self.fats_entry.delete(0, 'end')
 
         calculate_button = ttk.Button(self.window, text="Calculate", command=self.calculate)
-        calculate_button.grid(row=5, column=0, padx=10, pady=5)
+        calculate_button.grid(row=7, column=0, padx=10, pady=5)
+
+        recipe_button = ttk.Button(self.window, text="Create Recipe", command=self.give_me_recipe)
+        recipe_button.grid(row=8, column=0, padx=10, pady=5)
 
     def calculate(self):
         results = tk.Tk()
@@ -105,6 +115,47 @@ class Calculator:
             fats_header.grid(row=10, column=0 + count, padx=5, pady=5)
 
             count += 1
+    def ask_AI(self):
+        aiResponseWindow = tk.Tk()
+        aiResponseWindow.title("Ai SAID")
+        aiResponseWindow.geometry("500x500")
 
+        ask_value = self.ask_entry.get('1.0', tk.END)
+        url = "https://open-ai25.p.rapidapi.com/ask"
+
+        payload = { "query": f'{ask_value}' }
+        headers = {
+            "content-type": "application/json",
+            "X-RapidAPI-Key": "",
+            "X-RapidAPI-Host": "open-ai25.p.rapidapi.com"
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+
+        aiResponse = tk.Label(aiResponseWindow, text=f'{response.json()["response"]}', wraplength=350, justify="left")
+        aiResponse.grid(row=0, column=0, padx=5, pady=5)
+
+    def give_me_recipe(self):
+        receipeWindow = tk.Tk()
+        receipeWindow.title("New Recipe")
+        receipeWindow.geometry("500x500")
+
+        foodsArray = []
+        for food in self.food_nutrients_dict.items():
+            foodsArray.append(food)
+
+        url = "https://open-ai25.p.rapidapi.com/ask"
+
+        payload = { "query": f'Give me a recipe with the following items: {foodsArray}' }
+        headers = {
+            "content-type": "application/json",
+            "X-RapidAPI-Key": "",
+            "X-RapidAPI-Host": "open-ai25.p.rapidapi.com"
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+
+        aiResponse = tk.Label(receipeWindow, text=f'{response.json()["response"]}', wraplength=350, justify="left")
+        aiResponse.grid(row=0, column=0, padx=5, pady=5)
 
 Calculator()
