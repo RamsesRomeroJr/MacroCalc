@@ -59,7 +59,7 @@ class Calculator:
         calculate_button.grid(row=5, column=0, padx=10, pady=5)
 
     def calculate(self):
-
+        print("Here's your meal's macros")
         print("calories = " , self.total_macros[0])
         print("protein = " , self.total_macros[1])
         print("carbs = " , self.total_macros[2])
