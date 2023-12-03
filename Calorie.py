@@ -37,12 +37,12 @@ class Calculator:
         self.addFood_button = ttk.Button(self.window, text="Add Food", command=self.on_add_food)
         self.addFood_button.grid(row=6, column=0, padx=10, pady=5)
 
-        self.askAdvice_button = ttk.Button(self.window, text="Advice? Ask AI", command=self.ask_AI)
+        self.askAdvice_button = ttk.Button(self.window, text="Advice? Ask", command=self.ask_AI)
         self.askAdvice_button.grid(row=9, column=0, padx=10, pady=5)
         self.ask_entry = tk.Text(self.window, height=10, width=30)
         self.ask_entry.grid(row=9, column=1, padx=10, pady=5)
 
-        self.window.geometry("350x350")
+        self.window.geometry("450x450")
         self.window.title("Calorie Calculator")
         self.window.mainloop()
 
