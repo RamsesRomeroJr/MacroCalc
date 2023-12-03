@@ -53,7 +53,6 @@ Need a recipe with foods you have? Need Advice from an AI? This is the Calculato
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Python](https://www.python.org/)
 * [Tkinter](https://docs.python.org/3/library/tkinter.html)
 * [Requests](https://pypi.org/project/requests/)
