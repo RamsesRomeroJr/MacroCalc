@@ -6,7 +6,7 @@
     <img src="https://freeiconshop.com/wp-content/uploads/edd/calculator-flat.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">McraoCalc</h3>
+  <h3 align="center">MacroCalc</h3>
 
   <p align="center">
     A Nutrition Calculator, Recipe Creator and AI Chat!
